@@ -57,6 +57,9 @@
 	margin-top: 50px;
 
 }
+.inputField:focus {
+	outline: none;
+}
 .inputContainer {
 	flex:1;
 	align-self: center;
