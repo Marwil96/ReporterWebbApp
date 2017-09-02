@@ -1,6 +1,6 @@
 /* eslint-disable eol-last */
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL } from '../actions/types';
-const INITIAL_STATE = { email: '', password: '' };
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, SAVE_CITY, CITY_CHANGED } from '../actions/types';
+const INITIAL_STATE = { email: '', password: '', city:'' };
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
@@ -8,6 +8,10 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, email: 'test@test.com' };
 		case PASSWORD_CHANGED:
 			return { ...state, password: 'password' };
+		case CITY_CHANGED:
+			return {...state, city:action.payload};
+		case SAVE_CITY:
+			return {...state}
 		case LOGIN_USER:
 			return { ...state, loading: true, error: '' };
 		case LOGIN_USER_SUCCESS:

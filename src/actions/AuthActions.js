@@ -1,5 +1,7 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER, LOGIN_USER_FAIL, LOGIN_USER_SUCCESS } from './types';
+import { push } from 'react-router-redux';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER, LOGIN_USER_FAIL, LOGIN_USER_SUCCESS, SAVE_CITY, CITY_CHANGED } from './types';
+
 
 export const emailChanged = (text) => {
 	return {
@@ -11,6 +13,13 @@ export const emailChanged = (text) => {
 export const passwordChanged = (text) => {
 	return {
 		type: PASSWORD_CHANGED,
+		payload: text
+	};
+};
+
+export const cityChanged = (text) => {
+	return {
+		type: CITY_CHANGED,
 		payload: text
 	};
 };
@@ -27,6 +36,14 @@ export const loginUser = ({ email, password }) => {
 	};
 };
 
+export const saveCity = ({ city }) => {
+	console.log(city)
+	return (dispatch) => {
+	dispatch({ type: SAVE_CITY });
+	dispatch(push('/MainList'))
+}
+};
+
 const loginUserFail = (dispatch) => {
 	dispatch({ type: LOGIN_USER_FAIL });
 
@@ -38,6 +55,6 @@ const loginUserSuccess = (dispatch, user) => {
 		type: LOGIN_USER_SUCCESS,
 		payload: user
 	});
-
-	console.log('Login Sucess');
+	dispatch(push('/ChooseCity'))
+	console.log('Login Sucess', push('/button'));
 };

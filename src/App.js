@@ -3,15 +3,34 @@ import './App.css';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import ReduxThunk from 'redux-thunk';
+import createHistory from 'history/createBrowserHistory';
+import { Route } from 'react-router';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import reducers from './reducers';
 
-import Home from './Routers.js';
+import AuthContainer from './components/AuthContainer.js';
+import MainList from './components/MainList.js';
+import ChooseCity from './components/ChooseCity.js';
 import Button from './components/common/Button.js';
 
+const history = createHistory()
+
+const middleware = routerMiddleware(history)
+
+
+
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    router: routerReducer
+  }),
+  applyMiddleware(middleware, ReduxThunk)
+)
 
 class App extends Component {
+
   componentWillMount() {
   const config = {
     apiKey: 'AIzaSyCGGmIk8JNW5PdClidW7eCA2_Dk623cDyM',
@@ -26,8 +45,14 @@ class App extends Component {
   render() {
     return (
       <div className='container'>
-      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-        <Home />
+      <Provider store={createStore(reducers, {}, applyMiddleware(middleware,ReduxThunk))}>
+       <ConnectedRouter history={history}>
+       <div>
+        <Route path="/" component={AuthContainer} />
+        <Route path="/ChooseCity" component={ChooseCity} />
+        <Route path="/MainList" component={MainList} />
+        </div>
+      </ConnectedRouter>
       </Provider>
     </div>
     )

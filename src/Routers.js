@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import App from './App.js';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
 import AuthContainer from './components/AuthContainer.js';
+
 
 const Home = () => (
 	<Router>
