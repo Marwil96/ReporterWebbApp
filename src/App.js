@@ -12,6 +12,7 @@ import reducers from './reducers';
 
 import AuthContainer from './components/AuthContainer.js';
 import MainList from './components/MainList.js';
+import ErrorPage from './components/ErrorPage.js';
 import ChooseCity from './components/ChooseCity.js';
 import Button from './components/common/Button.js';
 
@@ -51,6 +52,7 @@ class App extends Component {
         <Route path="/" component={AuthContainer} />
         <Route path="/ChooseCity" component={ChooseCity} />
         <Route path="/MainList" component={MainList} />
+        <Route path="/404" component={ErrorPage} />
         </div>
       </ConnectedRouter>
       </Provider>

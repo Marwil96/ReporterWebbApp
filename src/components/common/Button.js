@@ -1,12 +1,12 @@
-import React, { Component, button } from 'react';
+import React, { Component } from 'react';
 import './Common.css';
 
 const Button = ({onClick, children}) =>{
     return (
       <a>
-        <button className="button" onClick={onClick}>
-          <h1>{children}</h1>
-        </button>
+        <div className="button" onClick={onClick}>
+          <h1 className="buttonText">{children}</h1>
+        </div>
       </a>
     );
 }

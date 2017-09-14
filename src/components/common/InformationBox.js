@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './Common.css';
+import {
+  ComposableMap,
+  ZoomableGroup,
+  Geographies,
+  Geography,
+} from "react-simple-maps";
 
-const InformationBox = ({ subject, title }) =>{
+const InformationBox = ({ subject }) =>{
     return (
      <div className='informationBox'>
       	<div> 
-      	<h2 className='subject'> {subject} </h2>
-      	<h2 className='title'> {title}</h2>
+      	<h2 className='informationBoxText'> {subject} </h2>
       	</div>
      </div>
     );
